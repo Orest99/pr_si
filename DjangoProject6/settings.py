@@ -45,12 +45,11 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Якщо ви використовуєте Whitenoise
+    'django.contrib.sessions.middleware.SessionMiddleware',  # ЦЕ МАЄ БУТИ ТУТ
+    'django.contrib.auth.middleware.AuthenticationMiddleware', # А ЦЕ ПІСЛЯ НЬОГО
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
