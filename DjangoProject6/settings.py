@@ -79,11 +79,17 @@ WSGI_APPLICATION = 'DjangoProject6.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'), # Зчитує URL бази даних зі змінної середовища
-        conn_max_age=600 # Максимальний вік з'єднання, в секундах (опціонально, але корисно)
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', # Це значення за замовчуванням для локальної розробки
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,  # Максимальний вік з'єднання в секундах
+        ssl_require=True   # Це важливо для Render PostgreSQL
+    )
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
